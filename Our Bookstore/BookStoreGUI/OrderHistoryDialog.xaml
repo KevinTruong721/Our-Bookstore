@@ -1,0 +1,26 @@
+﻿<Window x:Class="Comp4220.OrderHistoryDialog"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Comp4220"
+        mc:Ignorable="d"
+        Title="Order History" Height="484" Width="550">
+    <Grid>
+        <ListView x:Name="orderListView" MinHeight="430" Width="auto"
+		    ItemsSource="{Binding OrderHistories}" SelectionMode="Single">
+                    <ListView.View>
+                        <GridView>
+                            <GridViewColumn Width="80" Header="ISBN"
+				DisplayMemberBinding="{Binding BookID}" />
+                    <GridViewColumn Width="265" Header="Title"
+				DisplayMemberBinding="{Binding BookTitle}" />
+                    <GridViewColumn Width="60" Header="Subtotal"
+				DisplayMemberBinding="{Binding SubTotal}" />
+                            <GridViewColumn Width="80" Header="Date"
+				DisplayMemberBinding="{Binding Date}" />
+                        </GridView>
+                    </ListView.View>
+        </ListView>
+    </Grid>
+</Window>

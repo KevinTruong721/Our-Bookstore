@@ -1,0 +1,83 @@
+ <!--********************************************************************************
+ * For use by students taking 60-422 (Fall, 2014) to work on assignments and project.
+ * Permission required material. Contact: xyuan@uwindsor.ca 
+ * *******************************************************************************-->
+<Window x:Class="BookStoreGUI.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="XY's BookStore" Height="484" Width="550" Loaded="Window_Loaded"
+        Background="{DynamicResource WindowBackground}">
+    <Grid>
+        <StackPanel x:Name="LayoutRoot" DataContext="{Binding}"
+                    Orientation="Vertical" HorizontalAlignment="Left" Height="auto" Width="auto">
+            <StackPanel Orientation="Horizontal" HorizontalAlignment="Left">
+                <Label Content="Categories:" Margin="18,0,0,0" VerticalAlignment="Center" Style="{DynamicResource LabelStyle}"/>
+                <ComboBox ItemsSource="{Binding}" x:Name="categoriesComboBox"
+                          IsSynchronizedWithCurrentItem="True"
+                          DisplayMemberPath="Name" Height="23" Margin="12" Width="180" Style="{DynamicResource ComboBoxStyle}" >
+                    <ComboBox.ItemsPanel>
+                        <ItemsPanelTemplate>
+                            <VirtualizingStackPanel />
+                        </ItemsPanelTemplate>
+                    </ComboBox.ItemsPanel>
+                </ComboBox>
+                <Button Content="Login" Height="25" x:Name="loginButton"
+                        Width="60" Margin="0,2,0,0" Click="LoginButton_Click" Style="{DynamicResource ButtonStyle}"/>
+                <Button Content="Exit" Height="25" x:Name="exitButton"
+                        Width="60" Margin="10,2,0,0" Click="ExitButton_Click" Style="{DynamicResource ButtonStyle}"/>
+                <Button Content="Dark Mode" x:Name="DarkModeToggleButton" Click="DarkMode_Click" Width="78" Height="25" Margin="10,2,0,0" Style="{DynamicResource ButtonStyle}"/>
+            </StackPanel>
+            <DataGrid AutoGenerateColumns="False" Height="165" 
+                      ItemsSource="{Binding drCat_Book}"
+                      x:Name="ProductsDataGrid" RowDetailsVisibilityMode="VisibleWhenSelected"
+                      Width="490" HorizontalAlignment="Left" Margin="20,0,20,10"
+                      SelectionMode="Single" Style="{DynamicResource DataGridStyle}">
+                <DataGrid.Columns>
+                    <DataGridTextColumn x:Name="titleColumn" Binding="{Binding Title}"
+                                        Header="Title" Width="50*"/>
+                    <DataGridTextColumn x:Name="authorColumn" Binding="{Binding Author}"
+                                        Header="Author" Width="18*" />
+                    <DataGridTextColumn x:Name="priceColumn" Binding="{Binding Price}"
+                                        Header="Price" Width="12*" CanUserSort="False" />
+                    <DataGridTextColumn x:Name="yearColumn" Binding="{Binding Year}"
+                                        Header="Year" Width="8*" />
+                </DataGrid.Columns>
+                <DataGrid.ColumnHeaderStyle>
+                    <Style TargetType="DataGridColumnHeader" BasedOn="{StaticResource DataGridColumnHeaderStyle}" />
+                </DataGrid.ColumnHeaderStyle>
+            </DataGrid>
+            <StackPanel Orientation="Vertical">
+                <ListView x:Name="orderListView" MinHeight="150" Width="490"
+                          ItemsSource="{Binding}" SelectionMode="Single" Style="{DynamicResource ListViewStyle}">
+                    <ListView.View>
+                        <GridView>
+                            <GridViewColumn Width="80" Header="ISBN"
+                                            DisplayMemberBinding="{Binding BookID}" />
+                            <GridViewColumn Width="285" Header="Title"
+                                            DisplayMemberBinding="{Binding BookTitle}" />
+                            <GridViewColumn Width="60" Header="Quantity"
+                                            DisplayMemberBinding="{Binding Quantity}" />
+                            <GridViewColumn Width="60" Header="Subtotal"
+                                            DisplayMemberBinding="{Binding SubTotal}" />
+                        </GridView>
+                    </ListView.View>
+                </ListView>
+            </StackPanel>
+            <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" Margin="10">
+                <Button x:Name="addButton" MinHeight="25" MinWidth="80"
+                        Content="Add Book" Click="AddButton_Click" Style="{DynamicResource ButtonStyle}"/>
+                <Button x:Name="removeButton" MinHeight="25" MinWidth="80"
+                        Content="Remove Book" Click="RemoveButton_Click" Margin="10,0,0,0" Style="{DynamicResource ButtonStyle}"/>
+                <Button x:Name="checkoutOrderButton" MinHeight="25" MinWidth="80"
+                        Content="Proceed to Checkout" Click="CheckoutButton_Click" Width="121" Margin="196,0,0,0" Style="{DynamicResource ButtonStyle}"/>
+            </StackPanel>
+        </StackPanel>
+
+        <StatusBar VerticalAlignment="Bottom" HorizontalAlignment="Stretch" Style="{DynamicResource StatusBarStyle}">
+            <TextBlock x:Name="statusTextBlock" Style="{DynamicResource TextBlockStyle}">
+                <Run Text="Please login before proceeding to checkout."/>
+            </TextBlock>
+        </StatusBar>
+    </Grid>
+</Window>
+

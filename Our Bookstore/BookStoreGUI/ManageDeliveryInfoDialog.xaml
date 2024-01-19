@@ -1,0 +1,40 @@
+<Window x:Class="BookStoreGUI.ManageDeliveryInfoDialog"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        WindowStartupLocation="CenterOwner"
+        Title="Manage Delivery Info" Height="250" Width="525"
+        Background="{DynamicResource WindowBackground}">
+    <Grid Margin="0">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition />
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="Auto"/>
+        </Grid.RowDefinitions>
+        <ScrollViewer Grid.Row="1" VerticalScrollBarVisibility="Auto" Margin="0" VerticalContentAlignment="Stretch">
+            <ItemsControl Name="ItemsControlAddresses" Width="auto">
+                <ItemsControl.ItemTemplate>
+                    <DataTemplate>
+                        <StackPanel Orientation="Horizontal" HorizontalAlignment="Stretch">
+                            <TextBlock Text="{Binding Address}" Margin="5" Width="90" Style="{StaticResource TextBlockStyle}"/>
+                            <TextBlock Text="{Binding City}" Margin="5" Width="50" Style="{StaticResource TextBlockStyle}"/>
+                            <TextBlock Text="{Binding Province}" Margin="5" Width="50" Style="{StaticResource TextBlockStyle}"/>
+                            <TextBlock Text="{Binding PostalCode}" Margin="5" Width="50" Style="{StaticResource TextBlockStyle}"/>
+                            <TextBlock Text="{Binding Country}" Margin="5" Width="50" Style="{StaticResource TextBlockStyle}"/>
+                            <TextBlock Text="{Binding Phone}" Margin="5" Width="80" Style="{StaticResource TextBlockStyle}"/>
+                            <Button Content="Edit" Click="Button_EditAddress_Click" Tag="{Binding}" Margin="5" Style="{StaticResource ButtonStyle}"/>
+                            <Button Content="Delete" Click="Button_DeleteAddress_Click" Margin="5" Tag="{Binding}" Style="{StaticResource ButtonStyle}"/>
+                        </StackPanel>
+                    </DataTemplate>
+                </ItemsControl.ItemTemplate>
+            </ItemsControl>
+        </ScrollViewer>
+        <StackPanel Grid.Row="2" Height="Auto" Width="auto" Orientation="Horizontal"
+                    HorizontalAlignment="Left" Margin="0">
+            <Button Name="addAddressButton" Click="Button_AddAddress_Click" IsDefault="True"
+                    MinWidth="80" Margin="5" MaxHeight="23" Style="{StaticResource ButtonStyle}">Add Address</Button>
+        </StackPanel>
+    </Grid>
+</Window>

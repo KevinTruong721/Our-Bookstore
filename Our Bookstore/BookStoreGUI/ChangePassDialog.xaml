@@ -1,0 +1,31 @@
+﻿<Window x:Class="Comp4220.ChangePassDialog"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Comp4220"
+        Title="Change Password" Height="130" Width="300"
+        Background="{DynamicResource WindowBackground}">
+    <Grid>
+        <Grid Margin="2" >
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition/>
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="Auto"/>
+                <ColumnDefinition/>
+            </Grid.ColumnDefinitions>
+            <Label Content="Current Password:" Margin="0,2,5,0" />
+            <Label Content="New Password:" Grid.Row="1" />
+            <PasswordBox x:Name="CurrentPasswordBox" Grid.Column="1" Height="23" Margin="0.333,2,2.333,2"/>
+            <PasswordBox x:Name="NewPasswordBox" Grid.Column="1" Height="23" Grid.Row="1" Margin="0.333,2,2.333,1.667"/>
+            <StackPanel Grid.Row="2" Orientation="Horizontal" Margin="47,3.333,42.333,0.667" Grid.ColumnSpan="2">
+                <Button Content="OK" MinWidth="64" Margin="0,2,16,2" Height="20" VerticalAlignment="Top" Click="Button_OK_Click"/>
+                <Button Content="Cancel" IsCancel="True" MinWidth="64" Margin="48,2,2,1.667" Click="Button_Cancel_Click"/>
+            </StackPanel>
+        </Grid>
+    </Grid>
+</Window>

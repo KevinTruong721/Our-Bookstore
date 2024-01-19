@@ -1,0 +1,44 @@
+﻿<Window x:Class="Comp4220.CheckoutDialog"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Comp4220"
+        mc:Ignorable="d"
+        Title="Checkout" Height="300" Width="657">
+    <Grid DataContext="{Binding}" Margin="0,0,-8,0">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="2*"/>
+            <ColumnDefinition Width="9*"/>
+        </Grid.ColumnDefinitions>
+        <StackPanel HorizontalAlignment="Left" Height="145" Margin="9,10,0,0" VerticalAlignment="Top" Width="115" Grid.ColumnSpan="2">
+            <Button x:Name="Cancel_Button" Content="Cancel" Margin="0,10,0,5" Click="Cancel_Button_Click"/>
+            <Button x:Name="Confirm_Button" Content="Confirm" Margin="0,10,0,5" Click="Confirm_Button_Click"/>
+            <Button x:Name="Delivery_Info_Button" Content="Delivery Information" Margin="0,10,0,5" Click="Delivery_Info_Button_Click"/>
+            <Button x:Name="Pay_Info_Button" Content="Payment Information" Margin="0,10,0,5" Click="Pay_Info_Button_Click"/>
+        </StackPanel>
+        <ListView x:Name="orderListView" Grid.Column="1" HorizontalAlignment="Left" Height="233" Margin="10,10,0,0" 
+                  VerticalAlignment="Top" Width="505"
+                  ItemsSource="{Binding OrderList}" SelectionMode="Single">
+            <ListView.View>
+                <GridView>
+                    <GridViewColumn Width="80" Header="ISBN"
+				DisplayMemberBinding="{Binding BookID}" />
+                    <GridViewColumn Width="285" Header="Title"
+				DisplayMemberBinding="{Binding BookTitle}" />
+                    <GridViewColumn Width="60" Header="Quantity"
+				DisplayMemberBinding="{Binding Quantity}" />
+                    <GridViewColumn Width="60" Header="Subtotal"
+				DisplayMemberBinding="{Binding SubTotal}" />
+                </GridView>
+            </ListView.View>
+        </ListView>
+        <TextBlock HorizontalAlignment="Left" TextWrapping="Wrap" 
+                   Text="{Binding Total, StringFormat='Total: {0:C}'}" VerticalAlignment="Top"
+                   Height="29" Margin="10,160,0,0" Width="124" TextAlignment="Center"/>
+        <StackPanel HorizontalAlignment="Center" Height="37" Margin="0,194,0,0" VerticalAlignment="Top" Width="100">
+            <RadioButton Content="Delivery" IsChecked="{Binding IsDeliveryChecked}" ClickMode="Press"/>
+            <RadioButton Content="Pickup" IsChecked="{Binding IsPickupChecked}" ClickMode="Press"/>
+        </StackPanel>
+    </Grid>
+</Window>
